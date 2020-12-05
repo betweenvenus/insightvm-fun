@@ -1,22 +1,18 @@
-import Head from 'next/head';
-import styles from '../styles/Home.module.css';
-import Test from '../components/Test.js';
-import credentials from "../secret.js";
+import Head from "next/head";
+import SECRET from "../secret.js";
 import Banner from "../components/Banner.js";
-// import InfoBlock from "../components/InfoBlock.js";
-// import Container from "../components/Container.js";
-// import AssetData from "../components/AssetData.js";
-
-const buffer = Buffer(credentials);
-const secret = buffer.toString('base64');
+import APIPath from "../components/APIPath.js";
+import AssetData from "../components/AssetData.js";
+import SiteData from "../components/SiteData.js";
+import UserData from "../components/UserData.js";
 
 const API_URL = "https://localhost:3780";
 
 const requestHeaders = {
   headers: {
-    Authorization: `Basic ${secret}`
-  }
-}
+    Authorization: `Basic ${SECRET}`,
+  },
+};
 
 export async function getStaticProps() {
   const IVMRequest = await Promise.all([
@@ -30,26 +26,39 @@ export async function getStaticProps() {
 
   // Promise.all is required here because a Body.json() returns a *Promise*,
   // thus IVMData.map() returns an array of Promises
-  const IVMData = await Promise.all(IVMRequest.map(data => data.json()));
+  const IVMData = await Promise.all(IVMRequest.map((data) => data.json()));
 
   return {
     props: {
-      IVMData
-    }
-  }
+      IVMData,
+    },
+  };
 }
 
 export default function Home({ IVMData }) {
   console.info(IVMData);
   const [assetData, siteData, userData] = IVMData;
   return (
-    <div className={styles.container}>
+    <main>
       <Head>
-        <title>Create Next App</title>
+        <title>InsightVM API Thing</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Banner />
-      <Test data={ assetData }/>
-    </div>
+      {/* Asset block */}
+      <h2 style={{fontWeight: 'bold'}}>Asset Data</h2>
+      <APIPath path="/api/3/assets/1" />
+      <AssetData data={assetData} />
+
+      {/* Site block */}
+      <h2 style={{fontWeight: 'bold'}}>Site Data</h2>
+      <APIPath path="/api/3/sites/1" />
+      <SiteData data={siteData} />
+
+      {/* User block */}
+      <h2 style={{fontWeight: 'bold'}}>User Data</h2>
+      <APIPath path="/api/3/users/1" />
+      <UserData data={userData} />
+    </main>
   );
 }
