@@ -2,7 +2,7 @@ import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import Test from '../components/Test.js';
 import credentials from "../secret.js";
-// import Banner from "../components/Banner.js";
+import Banner from "../components/Banner.js";
 // import InfoBlock from "../components/InfoBlock.js";
 // import Container from "../components/Container.js";
 // import AssetData from "../components/AssetData.js";
@@ -48,6 +48,7 @@ export default function Home({ IVMData }) {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Banner />
       <Test data={ assetData }/>
     </div>
   );
