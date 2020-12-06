@@ -4,16 +4,18 @@ import MarchingAnts from "./MarchingAnts.js";
 const InfoBlockWrapper = styled.article`
   display: flex;
   flex-wrap: wrap;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 
   & > * {
-    flex: 1 1 50%;
-    min-width: 300px;
+    flex: 1 1 auto;
+    min-width: auto;
   }
 
-  .subtitle {
-    position: relative;
-    top: 15px;
+  @media screen and (min-width: 768px) {
+    & > * {
+      flex: 1 1 400px;
+      min-width: 300px;
+    }
   }
 `;
 export default function InfoBlock({ ...props }) {

@@ -6,7 +6,10 @@ export default function AssetData({ data }) {
   const { id, hostName, ip, riskScore, history } = data;
   return (
     <InfoBlock>
-      <InfoImage src="/windows-96.png" />
+      <InfoImage
+        src="/windows-96.png"
+          alt="Drawing of an old computer screen displaying the text 'Windows 96'."
+      />
       <InfoDetails>
         <div>
           <span className="subtitle">HOSTNAME</span>
@@ -14,15 +17,12 @@ export default function AssetData({ data }) {
           <code>
             <b>Asset ID: </b> {id}
           </code>
-          <br />
           <code>
             <b>Local IP: </b> {ip}
           </code>
-          <br />
           <code>
             <b>Risk score:</b> {riskScore.toFixed(2)} 😢
           </code>
-          <br />
           <code>
             <b>Number of scans: </b> {history.length}
           </code>

@@ -1,29 +1,33 @@
+// Built-in components
 import Head from "next/head";
-import SECRET from "../secret.js";
+
+// Custom components
 import Banner from "../components/Banner.js";
 import APIPath from "../components/APIPath.js";
 import AssetData from "../components/AssetData.js";
 import SiteData from "../components/SiteData.js";
 import UserData from "../components/UserData.js";
-console.log(process.env);
 
-const API_URL = "https://localhost:3780";
+// Global constants
+const ivmCredentials = Buffer.from(process.env.IVM_CREDENTIALS).toString(
+  "base64"
+);
+const apiURL = "https://localhost:3780";
 
 const requestHeaders = {
   headers: {
-    Authorization: `Basic ${SECRET}`,
+    Authorization: `Basic ${ivmCredentials}`,
   },
 };
 
 export async function getStaticProps() {
-  // process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
   const IVMRequest = await Promise.all([
     // Asset data
-    fetch(`${API_URL}/api/3/assets/1`, requestHeaders),
+    fetch(`${apiURL}/api/3/assets/1`, requestHeaders),
     // Site data
-    fetch(`${API_URL}/api/3/sites/1`, requestHeaders),
+    fetch(`${apiURL}/api/3/sites/1`, requestHeaders),
     // User data
-    fetch(`${API_URL}/api/3/users/1`, requestHeaders),
+    fetch(`${apiURL}/api/3/users/1`, requestHeaders),
   ]);
 
   // Promise.all is required here because a Body.json() returns a *Promise*,
@@ -48,17 +52,17 @@ export default function Home({ IVMData }) {
       </Head>
       <Banner />
       {/* Asset block */}
-      <h2 style={{fontWeight: 'bold'}}>Asset Data</h2>
+      <h2 style={{ fontWeight: "bold" }}>Asset Data</h2>
       <APIPath path="/api/3/assets/1" />
       <AssetData data={assetData} />
 
       {/* Site block */}
-      <h2 style={{fontWeight: 'bold'}}>Site Data</h2>
+      <h2 style={{ fontWeight: "bold" }}>Site Data</h2>
       <APIPath path="/api/3/sites/1" />
       <SiteData data={siteData} />
 
       {/* User block */}
-      <h2 style={{fontWeight: 'bold'}}>User Data</h2>
+      <h2 style={{ fontWeight: "bold" }}>User Data</h2>
       <APIPath path="/api/3/users/1" />
       <UserData data={userData} />
     </main>
