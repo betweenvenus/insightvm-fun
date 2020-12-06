@@ -16,11 +16,11 @@ export default function AssetData({ data }) {
     <InfoBlock>
       <InfoDetails>
         <div>
-          <span class="subtitle">SITE</span>
+          <span className="subtitle">SITE</span>
           <h2>{ name }</h2>
         </div>
       </InfoDetails>
-      <InfoImage src="/windows-96.png" />
+      <InfoImage src="windows-96.png" />
     </InfoBlock>
   );
 }

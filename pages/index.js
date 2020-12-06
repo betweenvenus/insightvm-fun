@@ -5,6 +5,7 @@ import APIPath from "../components/APIPath.js";
 import AssetData from "../components/AssetData.js";
 import SiteData from "../components/SiteData.js";
 import UserData from "../components/UserData.js";
+console.log(process.env);
 
 const API_URL = "https://localhost:3780";
 
@@ -15,6 +16,7 @@ const requestHeaders = {
 };
 
 export async function getStaticProps() {
+  // process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
   const IVMRequest = await Promise.all([
     // Asset data
     fetch(`${API_URL}/api/3/assets/1`, requestHeaders),

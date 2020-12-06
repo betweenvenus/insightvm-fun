@@ -1,15 +1,18 @@
 import styled from "styled-components";
-import Image from "next/image";
 
 const ImageWrapper = styled.div`
-  position: relative;
   min-height: 300px;
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 export default function InfoImage({ src, alt }) {
   return (
     <ImageWrapper>
-      <Image src={src} alt={alt ?? src} layout="fill" objectFit="cover" />
+      <img src={src} alt={alt ?? src} />
     </ImageWrapper>
   );
 }

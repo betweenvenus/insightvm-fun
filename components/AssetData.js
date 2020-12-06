@@ -9,7 +9,7 @@ export default function AssetData({ data }) {
       <InfoImage src="/windows-96.png" />
       <InfoDetails>
         <div>
-          <span class="subtitle">HOSTNAME</span>
+          <span className="subtitle">HOSTNAME</span>
           <h2>{hostName}</h2>
           <code>
             <b>Asset ID: </b> {id}
