@@ -11,10 +11,10 @@ export default function AssetData({ data }) {
       <InfoImage src="/smile.png" alt="A drawing of a smiley face :)." />
       <InfoDetails>
         <div>
-          <span class="subtitle">USER</span>
+          <span className="subtitle">USER</span>
           <h2>{name}</h2>
           <code>
-            <b>Email: </b> <a href="mailto:{email}">{ email }</a>
+            <b>Email: </b> <a href={"mailto:" + email}>{ email }</a>
           </code>
           <code>
             <b>Role: </b> { role.name }

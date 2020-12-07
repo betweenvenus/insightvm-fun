@@ -42,7 +42,6 @@ export async function getStaticProps() {
 }
 
 export default function Home({ IVMData }) {
-  console.info(IVMData);
   const [assetData, siteData, userData] = IVMData;
   return (
     <main>
