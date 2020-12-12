@@ -7,6 +7,7 @@ import APIPath from "../components/APIPath.js";
 import AssetData from "../components/AssetData.js";
 import SiteData from "../components/SiteData.js";
 import UserData from "../components/UserData.js";
+import currentTime from "../currentTime.js";
 
 // Global constants
 const ivmCredentials = Buffer.from(process.env.IVM_CREDENTIALS).toString(
@@ -30,18 +31,18 @@ export async function getStaticProps() {
     fetch(`${apiURL}/api/3/users/1`, requestHeaders),
   ]);
 
-  // Promise.all is required here because a Body.json() returns a *Promise*,
-  // thus IVMData.map() returns an array of Promises
   const IVMData = await Promise.all(IVMRequest.map((data) => data.json()));
 
   return {
     props: {
       IVMData,
+      // Freeze currentTime at time of export
+      currentTimeStatic: currentTime.valueOf()
     },
   };
 }
 
-export default function Home({ IVMData }) {
+export default function Home({ IVMData, currentTimeStatic }) {
   const [assetData, siteData, userData] = IVMData;
   return (
     <main>
@@ -49,7 +50,7 @@ export default function Home({ IVMData }) {
         <title>InsightVM API Thing</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Banner />
+      <Banner timestamp={ currentTimeStatic } />
       {/* Asset block */}
       <h2 style={{ fontWeight: "bold" }}>Asset Data</h2>
       <APIPath path="/api/3/assets/1" />

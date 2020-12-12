@@ -1,11 +1,9 @@
-import styled from "styled-components";
 import InfoBlock from "./InfoBlock.js";
 import InfoImage from "./InfoImage.js";
 import InfoDetails from "./InfoDetails.js";
 
 export default function AssetData({ data }) {
   const { name, email, role } = data;
-  console.log(role);
   return (
     <InfoBlock>
       <InfoImage src="/smile.png" alt="A drawing of a smiley face :)." />

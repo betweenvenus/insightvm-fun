@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import currentTime from "../currentTime.js";
 import ASCIIArt from "./ASCIIArt.js";
 
 const Monospace = styled.span`
@@ -17,18 +16,18 @@ const Paragraph = styled.p`
   }
 `;
 
-const Banner = () => {
+const Banner = ({ timestamp }) => {
   return (
     <header>
       <h1>
         <ASCIIArt />
       </h1>
       <Paragraph>
-        Exploring the <a href="https://www.rapid7.com/products/insightvm/">InsightVM</a> API by exposing potentially dangerous
+        Exploring the <a href="https://www.rapid7.com/products/insightvm/" target="_blank">InsightVM</a> API by exposing potentially dangerous
         information about my PC on the Internet for no reason.
       </Paragraph>
       <Monospace>
-        <b>🌐 Last updated: {currentTime}</b>
+        <b>🌐 Last updated: {timestamp}</b>
       </Monospace>
     </header>
   );

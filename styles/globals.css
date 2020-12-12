@@ -145,6 +145,7 @@ pre {
 
 ::selection {
   background-color: yellow;
+  color: blue;
 }
 
 body {
